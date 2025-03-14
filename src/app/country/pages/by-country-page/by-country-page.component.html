@@ -1,4 +1,19 @@
-<country-search-input (inputValue)="onSearch($event)"
-                      placeholder="Search by country" />
+<div class="flex flex-column">
+  <country-search-input (inputValue)="onSearch($event)"
+                        placeholder="Search by country" />
+  <div class="flex justify-center items-center text-gray-500 ml-2">Minimum 3 letters</div>
+</div>
 
-<country-country-list [countries]="[]"/>
+
+<!-- @if (countryResource.error()) {
+<div class="toast toast-top toast-end">
+  <div class="alert alert-error">
+    <span>{{countryResource.error()}}</span>
+  </div>
+</div>
+}
+@if (countryResource.hasValue()) {} -->
+<country-country-list [countries]="countryResource.value() ?? []"
+                      [errorMessage]="countryResource.error()"
+                      [isLoading]="countryResource.isLoading()"
+                      [isEmpty]="countryResource.value()?.length === 0" />

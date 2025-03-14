@@ -1,1 +1,11 @@
-<h1 class="text-3xl text-gray-400">{{countryTag() | uppercase}}</h1>
+@if (countryResorce.error()) {
+<app-not-found />
+}
+<!--  -->
+@if(countryResorce.isLoading()){
+<h1 class="text-3xl">Cargando....</h1>
+}
+<!--  -->
+@if (countryResorce.hasValue()) {
+<country-ui-information [country]="countryResorce.value()" />
+}

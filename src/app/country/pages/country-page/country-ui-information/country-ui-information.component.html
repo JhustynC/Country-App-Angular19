@@ -1,0 +1,40 @@
+<div class="flex w-full flex-col justify-center items-start lg:flex-row m-4">
+  <div class="card bg-base-100 w-full lg:w-[600px] shadow-sm">
+    <figure class="max-h-[300px]">
+      <img [src]="country().flag"
+           alt="Bandera de {{country().name}}"
+           class="w-full lg:w-[600px]" />
+    </figure>
+    <div class="card-body">
+      <h2 class="card-title justify-center">
+        {{country().name}}
+        <div class="badge badge-primary">Capital: {{country().capital}}</div>
+        <div class="badge badge-outline">{{country().icon}}</div>
+      </h2>
+      <div class="stats shadow justify-center">
+        <div class="stat place-items-center">
+          <div class="stat-title">Population</div>
+          <div class="stat-value">{{country().population | number}}</div>
+        </div>
+        <div class="stat place-items-center">
+          <div class="stat-title">Area</div>
+          <div class="stat-value text-secondary">{{country().area | number}}</div>
+        </div>
+        <div class="stat place-items-center">
+          <div class="stat-title">Código</div>
+          <div class="stat-value">{{country().idd.root}}{{country().idd.suffixes}}</div>
+        </div>
+      </div>
+      <div class="card-actions justify-center">
+        <div class="badge badge-outline">English Demonym -> Female {{country().demonyms.eng.f}}, Male: {{country().demonyms.eng.m}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider lg:divider-horizontal"></div>
+
+  <div class="w-full h-[500px] lg:w-[600px] aspect-video">
+    <iframe [src]="mapUrl"
+            class="w-full h-full border-0"></iframe>
+  </div>
+</div>

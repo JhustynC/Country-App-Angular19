@@ -1,4 +1,16 @@
-<country-search-input (inputValue)="onSearch($event)"
+<country-search-input (inputValue)="query.set($event)"
                       placeholder="Search by capital" />
 
-<country-country-list [countries]="countries()"/>
+<!-- @if (countryResource.error()) {
+<div class="toast toast-top toast-end">
+  <div class="alert alert-error">
+    <span>{{countryResource.error()}}</span>
+  </div>
+</div>
+}@if(countryResource.hasValue()){
+<country-country-list [countries]="countryResource.value()" />
+} -->
+<country-country-list [countries]="countryResource.value() ?? []"
+                      [errorMessage]="countryResource.error()"
+                      [isLoading]="countryResource.isLoading()"
+                      [isEmpty]="countryResource.value()?.length === 0" />

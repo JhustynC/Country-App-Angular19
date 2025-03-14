@@ -10,6 +10,18 @@ export class CountryMapper {
       name: restCountry.translations['spa'].common ?? 'No name',
       capital: restCountry.capital.join(', '),
       population: restCountry.population,
+      demonyms: {
+        eng: {
+          f: restCountry.demonyms.eng.f,
+          m: restCountry.demonyms.eng.m,
+        },
+        fra: {
+          f: restCountry.demonyms.fra.f,
+          m: restCountry.demonyms.fra.m,
+        },
+      },
+      area: restCountry.area,
+      idd: restCountry.idd,
     };
   };
 

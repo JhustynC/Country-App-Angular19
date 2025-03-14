@@ -5,4 +5,20 @@ export interface Country {
   name: string;
   capital: string;
   population: number;
+  demonyms: CountryDemonyms;
+  area: number;
+  idd: {
+    root: string;
+    suffixes: string[];
+  };
+}
+
+export interface CountryDemonyms {
+  eng: EngDemonyms;
+  fra: EngDemonyms;
+}
+
+export interface EngDemonyms {
+  f: string;
+  m: string;
 }
