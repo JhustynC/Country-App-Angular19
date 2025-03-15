@@ -1,8 +1,16 @@
+<div class="flex flex-row gap-2">
+  @for (continent of continents; track continent) {
+  <button class="btn"
+          [class.btn-outline]="query() !== continent"
+          [class]="getButtonStyle(continent)"
+          (click)="selectContinent(continent)">
+    {{ continent }}
+  </button>
+  }
+</div>
 
 
-
-
-@if(countryResource.error()){
+<!-- @if(countryResource.error()){
 <div class="toast toast-top toast-end">
   <div class="alert alert-error">
     <span>{{countryResource.error()}}</span>
@@ -10,4 +18,9 @@
 </div>
 }@if(countryResource.hasValue()){
 <country-country-list [countries]="countryResource.value()" />
-}
+} -->
+
+<country-country-list [countries]="countryResource.value() ?? []"
+                      [errorMessage]="countryResource.error()"
+                      [isLoading]="countryResource.isLoading()"
+                      [isEmpty]="countryResource.value()?.length === 0" />

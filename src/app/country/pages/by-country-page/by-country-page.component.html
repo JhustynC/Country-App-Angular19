@@ -1,6 +1,7 @@
 <div class="flex flex-column">
   <country-search-input (inputValue)="onSearch($event)"
-                        placeholder="Search by country" />
+                        placeholder="Search by country"
+                        [initialValue]="queryParam" />
   <div class="flex justify-center items-center text-gray-500 ml-2">Minimum 3 letters</div>
 </div>
 

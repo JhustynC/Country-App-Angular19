@@ -4,6 +4,7 @@ import { CountryListComponent } from '../../components/country-list/country-list
 import { CountryService } from '../../services/country.service';
 import { firstValueFrom, of } from 'rxjs';
 import { rxResource } from '@angular/core/rxjs-interop';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'country-by-country-page',
@@ -13,6 +14,8 @@ import { rxResource } from '@angular/core/rxjs-interop';
 export class ByCountryPage {
   countryService = inject(CountryService);
   query = signal('');
+  activatedRoute = inject(ActivatedRoute);
+  queryParam = this.activatedRoute.snapshot.queryParamMap.get('query') ?? '';
 
   //* Request with RxJS Operator
   countryResource = rxResource({
@@ -34,7 +37,7 @@ export class ByCountryPage {
   //   },
   // });
 
-  onSearch = (value: string) => {
+  onSearch(value: string) {
     this.query.set(value);
-  };
+  }
 }

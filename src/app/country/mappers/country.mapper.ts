@@ -2,28 +2,36 @@ import { Country } from '../interfaces/country.interface';
 import { RESTCountry } from '../interfaces/rest-countries-reponse.interfacet';
 
 export class CountryMapper {
-  static mapRestCountryToCountry = (restCountry: RESTCountry): Country => {
-    return {
-      cca2: restCountry.cca2,
-      icon: restCountry.flag,
-      flag: restCountry.flags.svg,
-      name: restCountry.translations['spa'].common ?? 'No name',
-      capital: restCountry.capital.join(', '),
-      population: restCountry.population,
-      demonyms: {
-        eng: {
-          f: restCountry.demonyms.eng.f,
-          m: restCountry.demonyms.eng.m,
-        },
-        fra: {
-          f: restCountry.demonyms.fra.f,
-          m: restCountry.demonyms.fra.m,
-        },
+  static mapRestCountryToCountry = ({
+    cca2,
+    flag,
+    flags,
+    translations,
+    capital,
+    population,
+    demonyms,
+    area,
+    idd,
+  }: RESTCountry): Country => ({
+    cca2,
+    icon: flag,
+    flag: flags.svg,
+    name: translations?.['spa']?.common ?? 'No name',
+    capital: capital?.join(', ') ?? 'No capital',
+    population,
+    demonyms: {
+      eng: {
+        f: demonyms?.eng?.f ?? 'No demonym',
+        m: demonyms?.eng?.m ?? 'No demonym',
       },
-      area: restCountry.area,
-      idd: restCountry.idd,
-    };
-  };
+      fra: {
+        f: demonyms?.fra?.f ?? 'No demonym',
+        m: demonyms?.fra?.m ?? 'No demonym',
+      },
+    },
+    area,
+    idd,
+  });
 
   static mapRestCountriesToCountries = (
     restCountries: RESTCountry[]

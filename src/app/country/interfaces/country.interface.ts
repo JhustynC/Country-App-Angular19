@@ -3,9 +3,9 @@ export interface Country {
   icon: string;
   flag: string;
   name: string;
-  capital: string;
+  capital?: string;
   population: number;
-  demonyms: CountryDemonyms;
+  demonyms?: CountryDemonyms;
   area: number;
   idd: {
     root: string;
@@ -15,7 +15,7 @@ export interface Country {
 
 export interface CountryDemonyms {
   eng: EngDemonyms;
-  fra: EngDemonyms;
+  fra?: EngDemonyms;
 }
 
 export interface EngDemonyms {
